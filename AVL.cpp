@@ -269,19 +269,42 @@ NO* removerArvore(NO* no, int valor) {
         no->dir = removerArvore(no->dir, valor);
     }
     else {
-                
+        if (no->esq == NULL && no->dir == NULL) {
+            delete no;
+            return NULL;
+        }
+
         // Caso 1: Nó sem filhos
         // Se o nó não possui filhos (esquerda e direita são NULL), basta removê-lo e retornar NULL para o pai.
-
+        else if (no->esq == NULL) {
+            NO* temp = no->dir;
+            delete no;
+            return temp;
+        }
         // Caso 2: Nó com apenas um filho
         // Se o nó possui apenas um filho (esquerda ou direita), retorna o ponteiro para esse filho, liberando o nó atual.
-
+        else if (no->dir == NULL) {
+            NO* temp = no->esq;
+            delete no;
+            return temp;
+        }
         // Caso 3: Nó com dois filhos
         // Se o nó possui dois filhos, encontra o sucessor (menor valor da subárvore direita),
         // copia o valor do sucessor para o nó atual e remove recursivamente o sucessor.
+        else {
+            NO* sucessor = no->dir;
+            while (sucessor->esq != NULL) {
+                sucessor = sucessor->esq;
+            }
+            no->valor = sucessor->valor;
+            no->dir = removerArvore(no->dir, sucessor->valor);
+        }
     }
+                
     // Atualiza altura e balanceia
+
     no->altura = maior(alturaNo(no->esq), alturaNo(no->dir)) + 1;
+
     return balancearNo(no);
 }
 
