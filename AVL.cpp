@@ -275,6 +275,7 @@ NO* removerArvore(NO* no, int valor) {
        
         // Caso 3: Nó com dois filhos
      
+        
     }
     // Atualiza altura e balanceia
     no->altura = maior(alturaNo(no->esq), alturaNo(no->dir)) + 1;
