@@ -269,13 +269,7 @@ NO* removerArvore(NO* no, int valor) {
         no->dir = removerArvore(no->dir, valor);
     }
     else {
-        // Caso 1: Nó sem filhos
-       
-        // Caso 2: Nó com apenas um filho
-       
-        // Caso 3: Nó com dois filhos
-     
-        
+                
         // Caso 1: Nó sem filhos
         // Se o nó não possui filhos (esquerda e direita são NULL), basta removê-lo e retornar NULL para o pai.
 
